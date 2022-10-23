@@ -1,2 +1,9 @@
+# Backend
 /backend/node_modules
+/backend/store-api.log
+
+# Frontend
 /frontend/node_modules
+
+# Env
+.env
