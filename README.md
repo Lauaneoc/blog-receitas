@@ -13,8 +13,7 @@ node backenc/src/index.js
 ### To start the frontend
 
 ```
-cd frontend/
-yarn run dev
+cd frontend/ && yarn run dev
 ```
 
 ## Developers
