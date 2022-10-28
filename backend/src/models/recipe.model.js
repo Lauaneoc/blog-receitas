@@ -2,8 +2,9 @@ import Sequelize from "sequelize";
 import db from "../repositories/db.js";
 
 const Recipe = db.define("recipes", {
-  recipeId: {
-    type: Sequelize.UUIDV4,
+  recipeid: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
     allowNull: false,
     primaryKey: true,
   },
@@ -19,8 +20,9 @@ const Recipe = db.define("recipes", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  createdAt: {
+  createdat: {
     type: Sequelize.DATE,
+    defaultValue: Sequelize.NOW,
     allowNull: false,
   },
 });
