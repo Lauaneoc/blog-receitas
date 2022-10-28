@@ -19,6 +19,6 @@ yarn run dev
 
 ## Developers
 
-frontend: [Lauane Oliveira](https://github.com/Lauaneoc)
+Frontend: [Lauane Oliveira](https://github.com/Lauaneoc)
 
-backend: [Hermando Thiago](https://github.com/HermandoThiago)
+Backend: [Hermando Thiago](https://github.com/HermandoThiago)
