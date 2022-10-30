@@ -36,9 +36,24 @@ async function removeRecipe(id) {
   }
 }
 
+async function updateRecipe(recipe) {
+  try {
+    await Recipe.update(recipe, {
+      where: {
+        recipeid: recipe.recipeid,
+      },
+    });
+
+    return await getRecipeById(recipe.recipeid);
+  } catch (error) {
+    throw error;
+  }
+}
+
 export default {
   insertRecipe,
   getRecipes,
   getRecipeById,
   removeRecipe,
+  updateRecipe,
 };

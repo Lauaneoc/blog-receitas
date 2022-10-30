@@ -69,9 +69,36 @@ async function removeRecipe(req, res, next) {
   }
 }
 
+async function updateRecipe(req, res, next) {
+  try {
+    const recipe = req.body;
+
+    if (
+      !recipe.title ||
+      !recipe.ingredients ||
+      !recipe.content ||
+      !recipe.category ||
+      !recipe.recipeid
+    ) {
+      throw new Error({
+        error:
+          "Title, Ingredients, Content, Category e RecipeId são obrigatórios",
+      });
+    }
+
+    const updateRecipe = await recipeService.updateRecipe(recipe);
+
+    res.status(200).send({ status: 200, data: updateRecipe });
+    global.log.info(`PUT /recipes - ${JSON.stringify(updateRecipe)} `);
+  } catch (error) {
+    next(error);
+  }
+}
+
 export default {
   createRecipe,
   getRecipes,
   getRecipeById,
   removeRecipe,
+  updateRecipe,
 };
