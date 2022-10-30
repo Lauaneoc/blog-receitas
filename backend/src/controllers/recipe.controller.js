@@ -2,15 +2,17 @@ import recipeService from "../services/recipe.service.js";
 
 async function createRecipe(req, res, next) {
   try {
-    const recipe = req.body;
+    const { title, ingredients, content, category } = req.body;
 
-    if (!recipe.title || !recipe.ingredients || !recipe.content) {
+    if (!title || !ingredients || !content || !category) {
       throw new Error({
-        error: "Title, Ingredients, Content são obrigatórios",
+        error: "Title, Ingredients, Content e Category são obrigatórios",
       });
     }
 
-    res.send(await recipeService.createRecipe(recipe));
+    const recipe = await recipeService.createRecipe(recipe);
+
+    res.status(201).send({ status: 201, data: recipe });
     global.log.info(`POST /recipes - ${JSON.stringify(recipe)}`);
   } catch (error) {
     next(error);
@@ -19,7 +21,9 @@ async function createRecipe(req, res, next) {
 
 async function getRecipes(_req, res, next) {
   try {
-    res.send(await recipeService.getRecipes());
+    const recipes = await recipeService.getRecipes();
+
+    res.status(200).send({ status: 200, data: recipes });
     global.log.info(`GET /recipes `);
   } catch (error) {
     next(error);
@@ -33,10 +37,14 @@ async function getRecipeById(req, res, next) {
     const recipe = await recipeService.getRecipeById(id);
 
     if (!recipe) {
-      res.status(404).send({ error: "Not Found Recipe." });
+      res.status(404).send({
+        status: 404,
+        data: {},
+        error: "Not Found Recipe",
+      });
     }
 
-    res.status(200).send(recipe);
+    res.status(200).send({ status: 200, data: recipe });
     global.log.info(`GET /recipes - ${JSON.stringify(recipe)} `);
   } catch (error) {
     next(error);
