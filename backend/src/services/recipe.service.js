@@ -12,8 +12,13 @@ async function getRecipeById(id) {
   return await recipeRepository.getRecipeById(id);
 }
 
+async function removeRecipe(id) {
+  return await recipeRepository.removeRecipe(id);
+}
+
 export default {
   createRecipe,
   getRecipes,
   getRecipeById,
+  removeRecipe,
 };

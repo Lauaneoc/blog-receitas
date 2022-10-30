@@ -17,13 +17,8 @@ app.use(cors());
 app.use("/recipes", recipeRoutes);
 
 app.use((err, req, res, next) => {
-  if (err.message) {
-    global.log.error(`${req.method} ${req.baseUrl} - ${err.message}`);
-    res.status(400).send({ error: err.message });
-  } else {
-    global.log.error(`${req.method} ${req.baseUrl} - ${err}`);
-    res.status(400).send({ error: err });
-  }
+  global.log.error(`${req.method} ${req.baseUrl} - ${err}`);
+  res.status(400).send({ error: err });
 });
 
 app.listen(3001, () => {

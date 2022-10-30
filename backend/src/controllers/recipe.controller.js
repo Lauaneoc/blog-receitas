@@ -2,18 +2,23 @@ import recipeService from "../services/recipe.service.js";
 
 async function createRecipe(req, res, next) {
   try {
-    const { title, ingredients, content, category } = req.body;
+    const recipe = req.body;
 
-    if (!title || !ingredients || !content || !category) {
+    if (
+      !recipe.title ||
+      !recipe.ingredients ||
+      !recipe.content ||
+      !recipe.category
+    ) {
       throw new Error({
         error: "Title, Ingredients, Content e Category são obrigatórios",
       });
     }
 
-    const recipe = await recipeService.createRecipe(recipe);
+    const newRecipe = await recipeService.createRecipe(recipe);
 
-    res.status(201).send({ status: 201, data: recipe });
-    global.log.info(`POST /recipes - ${JSON.stringify(recipe)}`);
+    res.status(201).send({ status: 201, data: newRecipe });
+    global.log.info(`POST /recipes - ${JSON.stringify(newRecipe)}`);
   } catch (error) {
     next(error);
   }
@@ -45,7 +50,20 @@ async function getRecipeById(req, res, next) {
     }
 
     res.status(200).send({ status: 200, data: recipe });
-    global.log.info(`GET /recipes - ${JSON.stringify(recipe)} `);
+    global.log.info(`GET /recipes/:id - ${JSON.stringify(recipe)} `);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function removeRecipe(req, res, next) {
+  try {
+    const { id } = req.params;
+
+    await recipeService.removeRecipe(id);
+
+    res.end();
+    global.log.info(`DELETE /recipes/:id - ${id} `);
   } catch (error) {
     next(error);
   }
@@ -55,4 +73,5 @@ export default {
   createRecipe,
   getRecipes,
   getRecipeById,
+  removeRecipe,
 };

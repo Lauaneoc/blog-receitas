@@ -24,8 +24,21 @@ async function getRecipeById(id) {
   }
 }
 
+async function removeRecipe(id) {
+  try {
+    return await Recipe.destroy({
+      where: {
+        recipeid: id,
+      },
+    });
+  } catch (error) {
+    throw error;
+  }
+}
+
 export default {
   insertRecipe,
   getRecipes,
   getRecipeById,
+  removeRecipe,
 };
