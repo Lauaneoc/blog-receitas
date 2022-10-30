@@ -8,4 +8,10 @@ router.post("/", recipeController.createRecipe);
 
 router.get("/", recipeController.getRecipes);
 
+router.get("/:id", recipeController.getRecipeById);
+
+router.delete("/:id", recipeController.removeRecipe);
+
+router.put("/", recipeController.updateRecipe);
+
 export default router;

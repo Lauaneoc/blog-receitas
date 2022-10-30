@@ -4,14 +4,21 @@ async function createRecipe(req, res, next) {
   try {
     const recipe = req.body;
 
-    if (!recipe.title || !recipe.ingredients || !recipe.content) {
+    if (
+      !recipe.title ||
+      !recipe.ingredients ||
+      !recipe.content ||
+      !recipe.category
+    ) {
       throw new Error({
-        error: "Title, Ingredients, Content são obrigatórios",
+        error: "Title, Ingredients, Content e Category são obrigatórios",
       });
     }
 
-    res.send(await recipeService.createRecipe(recipe));
-    global.log.info(`POST / - ${JSON.stringify(recipe)}`);
+    const newRecipe = await recipeService.createRecipe(recipe);
+
+    res.status(201).send({ status: 201, data: newRecipe });
+    global.log.info(`POST /recipes - ${JSON.stringify(newRecipe)}`);
   } catch (error) {
     next(error);
   }
@@ -19,8 +26,70 @@ async function createRecipe(req, res, next) {
 
 async function getRecipes(_req, res, next) {
   try {
-    res.send(await recipeService.getRecipes());
-    global.log.info(`GET / `);
+    const recipes = await recipeService.getRecipes();
+
+    res.status(200).send({ status: 200, data: recipes });
+    global.log.info(`GET /recipes `);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function getRecipeById(req, res, next) {
+  try {
+    const { id } = req.params;
+
+    const recipe = await recipeService.getRecipeById(id);
+
+    if (!recipe) {
+      res.status(404).send({
+        status: 404,
+        data: {},
+        error: "Not Found Recipe",
+      });
+    }
+
+    res.status(200).send({ status: 200, data: recipe });
+    global.log.info(`GET /recipes/:id - ${JSON.stringify(recipe)} `);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function removeRecipe(req, res, next) {
+  try {
+    const { id } = req.params;
+
+    await recipeService.removeRecipe(id);
+
+    res.end();
+    global.log.info(`DELETE /recipes/:id - ${id} `);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function updateRecipe(req, res, next) {
+  try {
+    const recipe = req.body;
+
+    if (
+      !recipe.title ||
+      !recipe.ingredients ||
+      !recipe.content ||
+      !recipe.category ||
+      !recipe.recipeid
+    ) {
+      throw new Error({
+        error:
+          "Title, Ingredients, Content, Category e RecipeId são obrigatórios",
+      });
+    }
+
+    const updateRecipe = await recipeService.updateRecipe(recipe);
+
+    res.status(200).send({ status: 200, data: updateRecipe });
+    global.log.info(`PUT /recipes - ${JSON.stringify(updateRecipe)} `);
   } catch (error) {
     next(error);
   }
@@ -29,4 +98,7 @@ async function getRecipes(_req, res, next) {
 export default {
   createRecipe,
   getRecipes,
+  getRecipeById,
+  removeRecipe,
+  updateRecipe,
 };
