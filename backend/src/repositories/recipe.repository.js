@@ -16,7 +16,16 @@ async function getRecipes() {
   }
 }
 
+async function getRecipeById(id) {
+  try {
+    return await Recipe.findByPk(id, { raw: true });
+  } catch (error) {
+    throw error;
+  }
+}
+
 export default {
   insertRecipe,
   getRecipes,
+  getRecipeById,
 };

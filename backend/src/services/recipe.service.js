@@ -8,7 +8,12 @@ async function getRecipes() {
   return await recipeRepository.getRecipes();
 }
 
+async function getRecipeById(id) {
+  return await recipeRepository.getRecipeById(id);
+}
+
 export default {
   createRecipe,
   getRecipes,
+  getRecipeById,
 };

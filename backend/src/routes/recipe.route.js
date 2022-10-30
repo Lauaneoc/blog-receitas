@@ -8,4 +8,6 @@ router.post("/", recipeController.createRecipe);
 
 router.get("/", recipeController.getRecipes);
 
+router.get("/:id", recipeController.getRecipeById);
+
 export default router;

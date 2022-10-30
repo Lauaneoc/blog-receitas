@@ -1,7 +1,7 @@
 import Sequelize from "sequelize";
 import db from "../repositories/db.js";
 
-const Recipe = db.define("recipes", {
+const Recipe = db.define("receitas", {
   recipeid: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
@@ -19,6 +19,9 @@ const Recipe = db.define("recipes", {
   content: {
     type: Sequelize.STRING,
     allowNull: false,
+  },
+  category: {
+    type: Sequelize.STRING,
   },
   createdat: {
     type: Sequelize.DATE,
