@@ -15,6 +15,10 @@ body {
   box-sizing: border-box;
 }
 
+form {
+  max-width: 100%;
+}
+
 .container {
   width: 80%;
   margin: 2.5rem auto;
@@ -108,15 +112,6 @@ footer p {
   margin: 2rem 0 2rem 0;
 }
 
-.flex-box-button {
-  margin: 1rem 5rem 1.5rem 0;
-  display: flex;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  justify-content: space-between;
-}
-
 .input-form {
   margin: 3rem 5rem 1.5rem 0;
   gap: .4rem;
@@ -171,7 +166,7 @@ select#categorias {
   border-radius: 5px; 
 }
 
-.flex-box-button label {
+label {
   color: #F96666;
   font-size: 15px;
   font-weight: 700;
@@ -179,8 +174,8 @@ select#categorias {
 }
 
 button {
-  width: 50%;
-  height: 7vh;
+  width: 93%;
+  height: 5vh;
   background-color: #F96666;
   border: none;
   border-radius: 8px;
@@ -189,4 +184,5 @@ button {
   font-weight: 600;
   font-size: 15px;
   cursor: pointer;
+  margin-top: 10px;
 }
