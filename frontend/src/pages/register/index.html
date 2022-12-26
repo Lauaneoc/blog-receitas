@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&display=swap" rel="stylesheet">
+  <title>Publique sua receita</title>
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/register/styles.css">
+
+</head>
+<body>
+  <div id="app" class="container">
+    <header>
+      <h1><img src="../../assets/img/panelaterapia-logo2 1.svg" alt="Logo do site Panelaterapia"></h1>
+      <ul class="menu">
+        <li><a href="../../index.html">Receitas</a></li>
+        <li><a href="#">Categorias</a></li>
+        <li><a href="./pages/register/index.html">Criar Receita</a></li>
+      </ul>
+      <div id="search">
+        <ul>
+          <li>
+            <img src="../../assets/icons/search.jpg" id="btnBusca" alt="Buscar"/>
+            <input type="text" id="txtBusca" placeholder="Digite aqui"/>                
+          </li>
+        </ul>
+
+      </div>
+      <div id="redes-sociais">
+        <ul>
+          <li><img src="../../assets/icons/logo-facebook.jpg" alt="Logo do Facebook"></li>
+          <li><img src="../../assets/icons/logo-insta.jpg" alt="Logo do Instagram"></li>
+          <li><img src="../../assets/icons/logo-twitter.jpg" alt="Logo do twitter"></li>
+          <li><img src="../../assets/icons/logo-youtube.jpg" alt="Logo do Youtube"></li>
+        </ul>
+      </div>
+      <footer class="footer">
+        <p>Sobre</p>
+        <p>Contato Comercial</p>
+        <p>Hermando Thiago</p>
+        <p>Lauane Oliveira</p>
+        <p>Política de Privacidade</p>
+        <ul class="copyright">
+          <li>
+            <img src="../../assets/icons/Copyright.jpg" alt="logo copyright">
+            <p>2009-2022 Panelaterapia</p>
+          </li>
+        </ul>
+      </footer>
+    </header>
+    <main>
+      <form action="" method="">
+
+          <label class="input-form" for="titulo">
+            Título:
+            <input type="text" id="titulo" placeholder="Bolo de chocolate">
+          </label>
+
+          <label class="input-form" for="ingredientes">
+            Ingredientes:
+            <textarea 
+            name="modo-de-preparo" 
+            id="ingredientes" 
+            cols="30" 
+            rows="10"
+            placeholder=" 3 ovos, açucar, farinha de trigo, cacau em pó"
+            ></textarea>
+          </label>
+
+          <label class="input-form" for="modo-de-preparo">
+            Modo de preparo:
+            <textarea 
+            name="modo-de-preparo" 
+            id="modo-de-preparo" 
+            cols="30" 
+            rows="10">
+            </textarea>
+          </label>
+        
+          <label>
+            Escolha a categoria:
+            <select name="category" id="categorias">
+              <option value="">Sobremesa</option>
+              <option value="">Festa</option>
+              <option value="">Doce</option>
+            </select>
+          </label>
+        <button type="submit">Publicar Receita</button>
+      </form>
+    </main>
+</body>
+</html>
